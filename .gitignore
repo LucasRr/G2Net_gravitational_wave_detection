@@ -1,4 +1,6 @@
 .DS_Store
 .ipynb_checkpoints/
 pyfstat_log/
+data/
+Generated_SFT_data_tmp/
 *.pyc

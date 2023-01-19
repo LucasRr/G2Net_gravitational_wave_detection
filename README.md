@@ -39,7 +39,7 @@ See PyFstat's [tutorial notebook](https://github.com/PyFstat/PyFstat/blob/master
 Or you can simply run:
 
 ```
-./generate_data.sh
+./generate_all_data.sh
 ```
 to generate 4 datasets with sensitivity 5.0, 10.0, 15.0 and 20.0, with 1000 samples each.
 
@@ -49,13 +49,13 @@ We provide 3 CNN-based models (in `utils.models`). A simple custom CNN with 3 co
 
 #### Data preprocessing/augmentation
 
-The data coming from both sensors is first cropped and concatenated to be of shape 2x360x4272. For each sample we compute the power of the complex spectrogram, and normalize it to be of zero-mean unit-variance. For computational efficiency, we compute the average over 48 consecutive time frames, such that the input image to each model is of size 2x360x89. Since each time frame corresponds to a 30 minutes of acquisition, averaging over 48 frames corresponds to averaging over a 24h day, which should also attenuate short-scale amplitude modulations due to the rotation of the Earth. Note that this averaging is implemented as a convolutional layer (with frozen weights) in order to make use of the GPU power. 
+The data coming from both sensors is first cropped and concatenated to be of shape 2x360x4272. For each sample we compute the power of the complex spectrogram, and normalize it to be of zero-mean unit-variance. For computational efficiency, we compute the average over 48 consecutive time frames, such that the input image to each model is of size 2x360x89. Since each time frame corresponds to a 30 minutes of acquisition, averaging over 48 frames corresponds to averaging over a 24h day, which should also attenuate short-scale amplitude modulations due to the rotation of the Earth. Note that this averaging is implemented as a convolutional layer (with frozen weights) in order to make use of the GPU. 
 
 As optional data augmentation, we also randomly translate the signal along frequencies, and randomly set time frames to zero to simulates times were one detector was off. 
 
 To train a model on the generated data, run:
 
 ```
-python train_model.py --model_name CNN
+python train_model.py --model_name CNN --data_folder data/ --device mps --num_epochs 15
 ``` 
-The model will be saved to `saved_models/`.
+The best model (in terms of Area Under the Curve on the validation set) is saved to `saved_models/`.
