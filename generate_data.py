@@ -15,10 +15,11 @@ logger = pyfstat.set_up_logger(outdir="pyfstat_log", label="1_generating_signals
 
 if __name__ == "__main__":
 
-    # read arguments:
-    msg = "Generate dataset containing continuous gravitational\
-    wave data."
-    parser = argparse.ArgumentParser(description=msg)
+    # Read arguments:
+    msg = "Generate dataset containing continuous gravitational wave data.\n"
+    msg += "Example usage:\n"
+    msg += "> python generate_data.py --sensitivity 10.0 --num_signals 1000"
+    parser = argparse.ArgumentParser(description=msg, formatter_class=argparse.RawTextHelpFormatter)
 
     parser.add_argument('--sensitivity', required=True, type=float)  
     parser.add_argument('--num_signals', default='1000', type=int)

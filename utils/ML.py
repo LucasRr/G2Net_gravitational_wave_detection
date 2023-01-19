@@ -20,7 +20,7 @@ def train_model(model,
     model_name="saved_model",
     verbose=True):
     '''
-        Train a model, given an optimizer and a number of epochs.
+        Trains a model, given an optimizer and a number of epochs.
         Computes validation loss and accuracy after each epoch, and prints train/validation metrics.
         Returns per-iteration train and validation losses, for plotting.
     '''
@@ -74,7 +74,7 @@ def train_model(model,
 
         if save_model:
             if val_auc > best_auc:
-                save_model_func(model, 'saved_models/'+model_name+'_best.pt')
+                save_model_func(model, 'saved_models/'+model_name+'.pt')
                 best_auc = val_auc
 
         train_loss_log.append(mean_epoch_loss)

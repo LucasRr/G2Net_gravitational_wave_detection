@@ -56,6 +56,6 @@ As optional data augmentation, we also randomly translate the signal along frequ
 To train a model on the generated data, run:
 
 ```
-python train_model.py --model_name CNN --data_folder data/ --device mps --num_epochs 15
+python train_model.py --model_name CNN --data_folder data/ --device mps --num_epochs 15 --batch_size 32
 ``` 
 The best model (in terms of Area Under the Curve on the validation set) is saved to `saved_models/`.

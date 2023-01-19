@@ -3,4 +3,5 @@
 pyfstat_log/
 data/
 Generated_SFT_data_tmp/
+saved_models/
 *.pyc

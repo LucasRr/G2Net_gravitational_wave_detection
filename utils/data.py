@@ -66,7 +66,6 @@ class G2NetDataset(torch.utils.data.Dataset):
                 H1_pow = (H1_pow - mean_H1)/np.sqrt(var_H1)
                 L1_pow = (L1_pow - mean_L1)/np.sqrt(var_L1)
                 
-
             x = np.stack((H1_pow, L1_pow), axis=0)
             
             x = torch.from_numpy(x).type(torch.FloatTensor)
@@ -77,11 +76,5 @@ class G2NetDataset(torch.utils.data.Dataset):
             x = torch.concatenate((x[:, freq_shift:], x[:, :freq_shift]), axis=1)
 
         return x, y
-
-
-def get_velocities():
-    with open('/Users/lucas/Documents/Data/G2Net/velocities.npy', 'rb') as f:
-        velocitites = np.load(f)
-    return velocities
 
         
