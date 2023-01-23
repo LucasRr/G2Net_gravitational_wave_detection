@@ -81,7 +81,7 @@ if __name__ == "__main__":
         model = utils.models.EfficientNet(freeze_blocks=False).to(device)
     else:
         raise NotImplementedError(f"{model_name} not implemented. Choose among 'CNN', 'CNN_2', or 'EfficientNet'.")
-    print(f"\nTraining model {model_name}")
+    print(f"\nTraining model {model_name}:")
 
     # Freeze moving average parameters:
     model.moving_average.weight.requires_grad = False
